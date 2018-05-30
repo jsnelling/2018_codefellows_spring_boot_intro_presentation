@@ -1,16 +1,27 @@
 package com.snelling_alaska.spring_boot_demo.controllers;
 
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.stereotype.Controller;
+import com.snelling_alaska.spring_boot_demo.models.Todo;
+import com.snelling_alaska.spring_boot_demo.respositories.TodosRepository;
+import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /*
- *  @Controller
+ *  @RestController
  *  ********************************************************************************
  *  Tells Spring that this class serves as a controller. It is a type of component
  *  and in this case allows us to declare the routes which this class is responsible
  *  for handling.
+ *
+ *  @RequestMapping
+ *  ********************************************************************************
+ *  Attaches the index method of HelloWorldController to the root route:
+ *  http://your-site.com/ -> HelloWorldController::index
  *
  *  @EnableAutoConfiguration
  *  ********************************************************************************
@@ -18,23 +29,32 @@ import org.springframework.web.bind.annotation.ResponseBody;
  *  it's best to automatically configure spring based on the dependencies which are
  *  included.
  */
-@Controller
-@EnableAutoConfiguration
+@RestController
+@RequestMapping("/")
 public class TodosController {
     /*
-     *  @RequestMapping
+     *  @Autowired
      *  ********************************************************************************
-     *  Attaches the index method of HelloWorldController to the root route:
-     *  http://your-site.com/ -> HelloWorldController::index
+     *  Tells Spring to use dependency injection to provide a value for this property.
+     */
+    @Autowired
+    @Setter
+    private TodosRepository todos;
+
+    /*
+     *  @CrossOrigin
+     *  ********************************************************************************
+     *  Tells Spring that this endpoint may be fetched by the frontend app which is
+     *  hosted by create-react-app on port 9000
      *
      *  @ResponseBody
      *  ********************************************************************************
      *  Tells Spring that the value returned from this function should be automatically
      *  serialized to JSON and returned to the client.
      */
-    @RequestMapping("/")
+    @CrossOrigin(origins = "http://localhost:9000")
     @ResponseBody
-    String index() {
-        return "Hello from Spring Boot!";
+    Iterable<Todo> todos() {
+        return todos.findAll();
     }
 }

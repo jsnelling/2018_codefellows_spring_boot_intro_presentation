@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-@EnableJpaRepositories("com.snellling_alaska.spring_boot_demo.repositories")
+@EnableJpaRepositories("com.snelling_alaska.spring_boot_demo.respositories")
 @EntityScan(basePackages = { "com.snelling_alaska.spring_boot_demo.models"})
 @SpringBootApplication(scanBasePackages = { "com.snelling_alaska.spring_boot_demo" })
 public class Application {
