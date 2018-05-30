@@ -1,4 +1,5 @@
-import org.springframework.boot.SpringApplication;
+package com.snelling_alaska.spring_boot_demo.controllers;
+
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,8 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 @EnableAutoConfiguration
-public class HelloWorldController {
-
+public class TodosController {
     /*
      *  @RequestMapping
      *  ********************************************************************************
@@ -37,9 +37,4 @@ public class HelloWorldController {
     String index() {
         return "Hello from Spring Boot!";
     }
-
-    public static void main(String[] args) throws Exception {
-        SpringApplication.run(HelloWorldController.class, args);
-    }
 }
-
