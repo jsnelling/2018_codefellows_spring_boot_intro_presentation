@@ -22,12 +22,6 @@ import java.util.List;
  *  ********************************************************************************
  *  Attaches the index method of HelloWorldController to the root route:
  *  http://your-site.com/ -> HelloWorldController::index
- *
- *  @EnableAutoConfiguration
- *  ********************************************************************************
- *  Tells Spring to, in addition to finding components for dependency injection, do
- *  it's best to automatically configure spring based on the dependencies which are
- *  included.
  */
 @RestController
 @RequestMapping("/")
