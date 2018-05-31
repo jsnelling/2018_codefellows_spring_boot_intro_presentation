@@ -4,10 +4,7 @@ import com.snelling_alaska.spring_boot_demo.models.Todo;
 import com.snelling_alaska.spring_boot_demo.respositories.TodosRepository;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,13 +15,8 @@ import java.util.List;
  *  and in this case allows us to declare the routes which this class is responsible
  *  for handling.
  *
- *  @RequestMapping
- *  ********************************************************************************
- *  Attaches the index method of HelloWorldController to the root route:
- *  http://your-site.com/ -> HelloWorldController::index
  */
 @RestController
-@RequestMapping("/")
 public class TodosController {
     /*
      *  @Autowired
@@ -35,18 +27,22 @@ public class TodosController {
     @Setter
     private TodosRepository todos;
 
+
+    @PostMapping("/todos")
+    Todo createTodo(@RequestBody Todo todo) { return todos.save(todo); }
+
     /*
-     *  @CrossOrigin
-     *  ********************************************************************************
-     *  Tells Spring that this endpoint may be fetched by the frontend app which is
-     *  hosted by create-react-app on port 9000
-     *
      *  @ResponseBody
      *  ********************************************************************************
      *  Tells Spring that the value returned from this function should be automatically
      *  serialized to JSON and returned to the client.
+     *
+     *  @RequestMapping
+     *  ********************************************************************************
+     *  Attaches the index method of HelloWorldController to the root route:
+     *  http://your-site.com/ -> HelloWorldController::index
      */
-    @CrossOrigin(origins = "http://localhost:9000")
+    @RequestMapping("/todos")
     @ResponseBody
     Iterable<Todo> todos() {
         return todos.findAll();

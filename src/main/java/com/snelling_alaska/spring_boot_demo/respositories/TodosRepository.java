@@ -8,7 +8,9 @@ import java.util.Optional;
 
 @Repository
 public interface TodosRepository extends CrudRepository<Todo, Long> {
-   public Iterable<Todo> findAll();
+   Iterable<Todo> findAll();
 
-   public Optional<Todo> findById(Long id);
+   Optional<Todo> findById(Long id);
+
+   Todo save(Todo todo);
 }
