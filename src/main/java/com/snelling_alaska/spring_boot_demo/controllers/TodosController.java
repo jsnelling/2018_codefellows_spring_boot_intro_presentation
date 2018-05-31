@@ -15,11 +15,6 @@ import java.util.List;
  *  and in this case allows us to declare the routes which this class is responsible
  *  for handling.
  *
- *  @EnableAutoConfiguration
- *  ********************************************************************************
- *  Tells Spring to, in addition to finding components for dependency injection, do
- *  it's best to automatically configure spring based on the dependencies which are
- *  included.
  */
 @RestController
 public class TodosController {
